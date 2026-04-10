@@ -84,13 +84,13 @@ This ensures your uploaded report always takes priority while the background kno
 
 Each backend module has a built-in test block:
 
-# Test helpers (CSV loading, PDF extraction, text cleaning, chart)
+Test helpers (CSV loading, PDF extraction, text cleaning, chart):
 python utils.py
 
-# Test RAG pipeline (embedding init, CSV indexing, retrieval)
+Test RAG pipeline (embedding init, CSV indexing, retrieval):
 python rag_pipeline.py
 
-# Test full pipeline end-to-end (retrieval → Groq → answer)
+Test full pipeline end-to-end (retrieval → Groq → answer):
 python llm_answer.py
 
 ⚙️ Configuration
