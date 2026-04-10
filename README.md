@@ -19,42 +19,12 @@ A Retrieval-Augmented Generation (RAG) application that lets patients and clinic
 🏗️ Architecture
 
 
-User PDF upload
-      │
-      ▼
- PDF Text Extraction (PyMuPDF)
-      │
-      ▼
- Chunking (500 chars / 100 overlap)
-      │
-      ▼
- Embedding (BAAI/bge-base-en-v1.5)
-      │
-      ▼
- ChromaDB — PDF Store ◄──── ChromaDB — Background KB (MTSamples CSV)
-      │                              │
-      └──────────┬───────────────────┘
-                 │  retrieve_chunks() priority cascade
-                 ▼
-          Top-k Chunks + Scores
-                 │
-                 ▼
-      LLaMA 3.3-70B via Groq API
-                 │
-                 ▼
-        Answer + Source Citations
-                 │
-                 ▼
-        Streamlit Chat UI + Chart
+<img width="701" height="553" alt="image" src="https://github.com/user-attachments/assets/0fa5d616-c822-4400-956e-ef5e05b70bdd" />
 
-Layer	Technology
-Frontend	Streamlit
-LLM	LLaMA 3.3-70B (llama-3.3-70b-versatile) via Groq
-Embeddings	BAAI/bge-base-en-v1.5 (HuggingFace, CPU)
-Vector DB	ChromaDB — two persistent local collections
-PDF parsing	PyMuPDF (fitz)
-Orchestration	LangChain
-Charts	Plotly
+
+
+<img width="687" height="261" alt="image" src="https://github.com/user-attachments/assets/3adfd5d5-a485-4bfa-87af-13259d149585" />
+
 
 📁 Project Structure
 
