@@ -29,19 +29,8 @@ A Retrieval-Augmented Generation (RAG) application that lets patients and clinic
 📁 Project Structure
 
 
-medical-qa/
-├── app.py               # Streamlit UI — entry point
-├── rag_pipeline.py      # Embedding, indexing, retrieval
-├── llm_answer.py        # Prompt building, Groq API call
-├── utils.py             # CSV/PDF loading, text cleaning, chart
-├── style.css            # Custom Streamlit theme
-├── requirements.txt     # Python dependencies
-├── .env                 # Your API key (not committed)
-├── data/
-│   └── mtsamples.csv    # Download from Kaggle (see Setup)
-└── vectorstore/         # Created automatically on first run
-    ├── background/      # MTSamples ChromaDB collection
-    └── pdf/             # Uploaded PDFs ChromaDB collection
+<img width="648" height="218" alt="image" src="https://github.com/user-attachments/assets/8d530afc-2f98-4752-9b79-e2d503e6938d" />
+
 
 🚀 Setup
 
@@ -51,7 +40,7 @@ medical-qa/
 •	mtsamples.csv from Kaggle — search "medicaltranscriptions"
 
 2. Clone & install
-git clone https://github.com/your-username/medical-qa.git
+git clone https://github.com/Suvekshyajha/medical_report_qa.git
 cd medical-qa
 pip install -r requirements.txt
 
