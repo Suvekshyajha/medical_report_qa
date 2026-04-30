@@ -19,11 +19,12 @@ pip-wheel-metadata/
 venv/
 .venv/
 env/
-.env/
 ENV/
 
-# ── ChromaDB / Vector stores ─────────────────────────────────────
-vectorstore/
+# ── Milvus / Docker ──────────────────────────────────────────────
+volumes/
+milvus-data/
+docker-compose.yml
 
 # ── Data files ───────────────────────────────────────────────────
 data/mtsamples.csv
@@ -46,7 +47,6 @@ desktop.ini
 
 # ── Jupyter ──────────────────────────────────────────────────────
 .ipynb_checkpoints/
-*.ipynb
 
 # ── Logs & temp ──────────────────────────────────────────────────
 *.log
