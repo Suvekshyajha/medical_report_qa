@@ -2,6 +2,9 @@
 
 A RAG-based web application that lets patients and clinicians upload PDF medical reports and ask natural-language questions about them. Built as a capstone project covering the full pipeline — from document ingestion to a live Streamlit deployment.
 
+<img width="1918" height="785" alt="image" src="https://github.com/user-attachments/assets/279d2c35-01ef-4ffa-97b6-815ecab8b5d0" />
+
+
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.45-FF4B4B?style=flat&logo=streamlit&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-0.3.25-1C3C3C?style=flat)
