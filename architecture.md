@@ -1,1 +1,1 @@
-<img width="800" height="1020" alt="architecture" src="https://github.com/user-attachments/assets/c144f1bf-d2e5-470e-8d82-997455e6ab45" />
+<img width="1800" height="2160" alt="architecture (1)" src="https://github.com/user-attachments/assets/28797e15-2ca6-4ba9-b8fa-9086e4d31b01" />
