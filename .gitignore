@@ -52,3 +52,7 @@ desktop.ini
 *.log
 *.tmp
 *.bak
+
+#node js modules
+node_modules/
+.next/ 

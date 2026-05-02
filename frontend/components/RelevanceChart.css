@@ -1,0 +1,122 @@
+.relevance {
+  margin-top: 1rem;
+}
+
+.relevance__tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.relevance__tab {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  text-transform: capitalize;
+  transition: background-color 0.15s, color 0.15s;
+  font-family: inherit;
+}
+.relevance__tab--active {
+  background-color: var(--brand-600);
+  color: #ffffff;
+}
+.relevance__tab--inactive {
+  background-color: #f1f5f9;
+  color: #64748b;
+}
+.relevance__tab--inactive:hover {
+  background-color: #e2e8f0;
+}
+
+/* ── Chart panel ── */
+.relevance__chart-panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.25rem;
+}
+
+.relevance__chart-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+/* ── Sources panel ── */
+.relevance__sources {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.relevance__chunk {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.relevance__chunk-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  font-family: inherit;
+  text-align: left;
+}
+.relevance__chunk-header:hover {
+  background-color: #f8fafc;
+}
+
+.relevance__chunk-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.relevance__chunk-toggle {
+  color: #94a3b8;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.relevance__chunk-body {
+  padding: 0 1rem 1rem;
+}
+
+.relevance__chunk-text {
+  font-size: 0.75rem;
+  font-family: 'DM Mono', 'Menlo', monospace;
+  color: #64748b;
+  background-color: #f8fafc;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  white-space: pre-wrap;
+  line-height: 1.625;
+  margin: 0;
+}
+
+/* ── Score badge ── */
+.score-badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+}
+.score-badge--high   { background-color: #dcfce7; color: #15803d; }
+.score-badge--medium { background-color: #fef3c7; color: #b45309; }
+.score-badge--low    { background-color: #fee2e2; color: #dc2626; }

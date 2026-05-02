@@ -1,6 +1,13 @@
 # ============================================================
 # llm_answer.py
 # PURPOSE: Send retrieved chunks + question to Groq API
+#
+# UPGRADES vs original:
+#   - HyDE (Hypothetical Document Embeddings) query expansion
+#     Before retrieving, asks the LLM to write a hypothetical answer,
+#     then uses THAT as the search query. Dramatically improves
+#     retrieval because the hypothetical answer looks more like
+#     the indexed documents than a short question does.
 # ============================================================
 
 import os
@@ -46,7 +53,52 @@ def load_llm():
 
 
 # ============================================================
-# FUNCTION 2: Build Prompt
+# FUNCTION 2: HyDE — Hypothetical Document Expansion
+# ============================================================
+def expand_query_with_hyde(question: str, llm) -> str:
+    """
+    Generates a hypothetical answer to use as the retrieval query.
+
+    WHY THIS WORKS:
+        A short question like "What are symptoms of chest pain?"
+        is very different in embedding space from the clinical notes
+        you indexed. But a hypothetical clinical paragraph about
+        chest pain symptoms is much closer to those notes.
+
+        This closes the gap between question and document embeddings,
+        dramatically improving retrieval quality — especially for
+        medical text where precise terminology matters.
+
+    Args:
+        question: the user's original question
+        llm:      the loaded ChatGroq LLM
+
+    Returns:
+        A hypothetical passage string to use as the search query.
+        Falls back to the original question if LLM call fails.
+    """
+
+    hyde_prompt = f"""You are a medical expert. Write a short clinical paragraph (3-5 sentences) 
+that would be found in a medical record or textbook and directly answers this question.
+Write ONLY the paragraph — no preamble, no explanation.
+
+Question: {question}
+
+Clinical paragraph:"""
+
+    try:
+        print("🔮 HyDE: generating hypothetical passage for better retrieval...")
+        response = llm.invoke(hyde_prompt)
+        hypothetical = response.content.strip()
+        print(f"   Hypothetical passage: {hypothetical[:120]}...\n")
+        return hypothetical
+    except Exception as e:
+        print(f"⚠️  HyDE failed ({e}), falling back to original query.\n")
+        return question
+
+
+# ============================================================
+# FUNCTION 3: Build Answer Prompt
 # ============================================================
 def build_prompt():
     template = """You are a precise medical assistant helping patients understand their records.
@@ -69,23 +121,32 @@ Answer (be specific, cite sources, use plain language):"""
 
 
 # ============================================================
-# FUNCTION 3: Get Answer
+# FUNCTION 4: Get Answer  (with HyDE)
 # ============================================================
 def get_answer(question: str, vectorstore_bg, vectorstore_pdf, llm):
     """
     Gets answer from LLaMA for a given question.
 
+    UPGRADE vs original:
+        Now uses HyDE to expand the query before retrieval.
+        The hypothetical passage is used for vector search,
+        but the original question is shown to the LLM.
+
     Args:
-        question: user's question
-        vectorstore_bg: background knowledge DB
+        question:        user's question
+        vectorstore_bg:  background knowledge DB
         vectorstore_pdf: user PDF DB
-        llm: ChatGroq LLM object
+        llm:             ChatGroq LLM object
     """
 
-    print(f"🔍 Retrieving chunks for: '{question}'")
+    print(f"❓ Question: '{question}'")
 
-    # Pass BOTH vector stores to retrieve_chunks
-    results = retrieve_chunks(question, vectorstore_pdf, vectorstore_bg, k=5)
+    # ── UPGRADE: HyDE query expansion ──
+    # Use the hypothetical passage for retrieval, keep original for the prompt
+    search_query = expand_query_with_hyde(question, llm)
+
+    print(f"🔍 Retrieving chunks (using HyDE-expanded query)...")
+    results = retrieve_chunks(search_query, vectorstore_pdf, vectorstore_bg, k=5)
 
     if not results:
         return {
@@ -110,7 +171,7 @@ def get_answer(question: str, vectorstore_bg, vectorstore_pdf, llm):
         )
     context = "\n\n".join(context_parts)
 
-    # Build and send prompt
+    # Build and send prompt — use ORIGINAL question, not the HyDE expansion
     prompt = build_prompt()
     formatted_prompt = prompt.format(context=context, question=question)
 
@@ -129,7 +190,7 @@ def get_answer(question: str, vectorstore_bg, vectorstore_pdf, llm):
 
 
 # ============================================================
-# FUNCTION 4: Format Sources
+# FUNCTION 5: Format Sources
 # ============================================================
 def format_sources(sources: list) -> str:
     """Formats source chunks for display."""
@@ -149,7 +210,7 @@ def format_sources(sources: list) -> str:
 # ============================================================
 if __name__ == "__main__":
     print("=" * 50)
-    print("TESTING llm_answer.py")
+    print("TESTING llm_answer.py  (with HyDE)")
     print("=" * 50)
 
     print("\n🔧 Step 1: Initialize ChromaDB")
@@ -168,7 +229,7 @@ if __name__ == "__main__":
     print(f"\n{'=' * 50}")
     print(f"Answer:\n{result['answer']}")
     print(f"\n{'=' * 50}")
-    print(f"Scores: {result['scores']}")
+    print(f"Reranker Scores: {result['scores']}")
 
     print("\n" + "=" * 50)
     print("✅ llm_answer.py ALL TESTS DONE!")

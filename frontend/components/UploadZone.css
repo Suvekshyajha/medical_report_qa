@@ -1,0 +1,67 @@
+.upload__drop-zone {
+  background: #ffffff;
+  border: 2px dashed #e2e8f0;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  text-align: center;
+  transition: border-color 0.15s;
+  cursor: default;
+}
+.upload__drop-zone:hover {
+  border-color: var(--brand-300);
+}
+
+.upload__icon {
+  font-size: 2.25rem;
+  margin-bottom: 0.75rem;
+  user-select: none;
+}
+
+.upload__title {
+  font-weight: 700;
+  color: #334155;
+  font-size: 1.0625rem;
+}
+
+.upload__subtitle {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+.upload__row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.upload__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #475569;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.15s;
+  font-family: inherit;
+}
+.upload__btn:hover:not(:disabled) {
+  background-color: #f8fafc;
+}
+.upload__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.upload__hint {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.upload__error {
+  font-size: 0.75rem;
+  color: #ef4444;
+}

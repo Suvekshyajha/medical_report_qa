@@ -1,6 +1,16 @@
-def main():
-    print("Hello from dr-transcript!")
+"""
+main.py — Project entry point
+Run:  uv run python main.py
+      or
+      uv run uvicorn src.api:app --reload
+"""
 
+import uvicorn
 
 if __name__ == "__main__":
-    main()
+    uvicorn.run(
+        "src.api:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+    )

@@ -1,0 +1,133 @@
+.sidebar {
+  width: 18rem;
+  flex-shrink: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  align-self: flex-start;
+}
+
+.sidebar__label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar__btn-new {
+  display: block;
+  width: 100%;
+  background-color: var(--brand-600);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.625rem 0;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.sidebar__btn-new:hover {
+  background-color: var(--brand-700);
+}
+
+.sidebar__history-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar__session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar__empty {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  padding: 0 0.25rem;
+}
+
+.sidebar__session-card {
+  position: relative;
+}
+
+.sidebar__session-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.75rem 0.75rem 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid #f1f5f9;
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+  color: #475569;
+}
+.sidebar__session-btn:hover {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+.sidebar__session-btn--active {
+  border-color: var(--brand-100);
+  background-color: var(--brand-50);
+  color: var(--brand-800);
+}
+
+.sidebar__session-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #4ade80;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.sidebar__session-name {
+  font-weight: 500;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.25;
+}
+
+.sidebar__session-meta {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+  margin-top: 0.125rem;
+  display: block;
+}
+
+.sidebar__btn-delete {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #cbd5e1;
+  font-size: 1.125rem;
+  line-height: 1;
+  transition: opacity 0.15s, color 0.15s;
+  padding: 0.25rem;
+}
+.sidebar__session-card:hover .sidebar__btn-delete {
+  opacity: 1;
+}
+.sidebar__btn-delete:hover {
+  color: #f87171;
+}
